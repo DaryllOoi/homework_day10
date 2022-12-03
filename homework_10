@@ -75,8 +75,8 @@ function dice (n){
     }
     return random1;
 }
-let randomNumber = dice(4);
-console.log("the random numbers", randomNumber);
+let randomNumber = dice(6);
+console.log("EXERCISE 1", randomNumber);
 
 // EXERCISE 2
 
@@ -84,10 +84,11 @@ console.log("the random numbers", randomNumber);
 
 function whoIsBigger(num1, num2) {
     let biggest = Math.max(num1, num2);
-    console.log(biggest);
+    console.log("EXERCISE 2", biggest);
   };
 
   whoIsBigger(5,66);
+  
 
 // EXERCISE 3
 
@@ -95,54 +96,59 @@ function whoIsBigger(num1, num2) {
 
 //Ex.: splitMe("I love coding") => returns ["I", "Love", "Coding"]
 
-function splitMe (reverse){
-    for( let i = 0; i< reverse.length; i++);
-    let split3 = reverse.split(' ');
+function splitMe (str){
+    let split3 = str.split(' ');
     return split3
 }
 let reverseThis = splitMe("Hi how are you");
-console.log("reversing", reverseThis);
+console.log("EXERCISE 3", reverseThis);
 
 // EXERCISE 4
 
 //Write a function called deleteOne which receives a string and a boolean as parameters.
-
 //If the boolean value is true it should return the string without the first letter, otherwise it should remove the last one from it.
 
-function deleteOne (str){
-    if (str === true){
-        let bigNumber4 = str.substring (1, str.length());
+function deleteOne ( str , boolean){
+    if (boolean){
+        let bigNumber4 = str.substring ( 1);
         return bigNumber4;
     }else {
-        bigNumber4 = str.substring (0, str.length(-1));
+        bigNumber4 = str.substring (0, 5);
         return bigNumber4;
     }
 }
-//let number44 = deleteOne (two === true);
-//console.log("the number is", number44);
+let number44 = deleteOne ("twenty", true);
+console.log("EXERCISE 4", number44);
 
 // EXERCISE 5
 
 //Write a function called onlyLetters which receives a string as a parameter and returns it removing all the digits.
-
 //Ex.: onlyLetters("I have 4 dogs") => returns "I have dogs"
 
-function onlyLetters (str5){
-   for (let i = 0; i< str5.length; i++){
-    if( !CharacterData.isDigit(str5.charAt(i))) {
-        result = result + str5.charAt(i);
+function onlyLetters (str){
+
+     str = str.split('');
+   for (let i = 0; i < str.length; i++){
+    if ( !isNaN(str[i])) {
+        str.splice (i); i++;
    }
 }
-    return result;
+    return str.join('');
 }
 
-//let string5 = onlyLetters ("hyper 1998");
-//console.log("new one", string5);
+let string5 = onlyLetters ("hyper99 1998");
+console.log("EXERCISE 5", string5);
 
 // EXERCISE 6
-
 //Write a function called isThisAnEmail which receives a string as a parameter and returns true if the string is a valid email address.
 
+function isThisAnEmail(email) {
+    let re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  }
+      
+  console.log("EXERCISE 6",isThisAnEmail('my email is daryllooi@hotmail.com'));
+  console.log("EXERCISE 6", isThisAnEmail('my email is hello')); 
 
 //EXERCISE 7
 
@@ -152,7 +158,7 @@ let whatDayIsIt = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","
 let d= new Date ();
 let day = whatDayIsIt[d.getDay()];
 
-console.log("day", day);
+console.log("EXERCISE 7", day);
 
 // EXERCISE 8
 
@@ -165,11 +171,24 @@ console.log("day", day);
 //values: [3, 3, 4]
 //}
 
-
+function rollTheDices (num){
+    let arr = [];
+    let obj = {
+        sum : 0,
+    };
+    for (let i = 0; i < num; i++){
+        arr[i] = dice ();
+        obj.sum += arr[i];
+    }
+   
+}
+let randomDice = rollTheDices(2)
+console.log("EXERCISE 8", randomDice);
 
 // EXERCISE 9
 
 //Write a function called howManyDays which receives a date as a parameter and returns the number of days passed since that date.
+
 
 
 // EXERCISE 10
@@ -185,10 +204,32 @@ console.log("day", day);
 //Write a function called deleteProp which receives an object and a string as parameters,
 //and returns the given object after deleting its property named as the given string.
 
+   let objectTwo = {para : "ob", para2 : "ob2"}
+
+function deleteProp (object, string){
+    delete object[string];
+    return object;
+}
+let deleteThis = deleteProp(objectTwo,"para")
+console.log("EXERCISE 11",deleteThis);
 
 // EXERCISE 12
 
 //Write a function called oldestMovie which finds the oldest movie in the provided movies array.
+
+function oldestMovie(){
+    
+    let oldest = movies[0].Year; 
+    let index = 0;
+    for ( let i = 1; i< movies.length-1; i++ ){
+        if( oldest >= movies[i].Year){
+            oldest = movies[i].Year;
+            index = i;
+        }
+    }
+    return movies[index];
+}
+console.log("EXERCISE 12", oldestMovie());
 
 // EXERCISE 13
 
