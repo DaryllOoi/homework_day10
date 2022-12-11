@@ -399,30 +399,53 @@ console.log("EXERCISE 7", day);
 //values: [3, 3, 4]
 //}
 
-function rollTheDices (num){
-    let arr = [];
-    let obj = {
-        sum : 0,
-    };
-    for (let i = 0; i < num; i++){
-        arr[i] = dice ();
-        obj.sum += arr[i];
-    }
-   
-}
-let randomDice = rollTheDices(2)
-console.log("EXERCISE 8", randomDice);
+const rollTheDices = function (numberOfDices) {
+  let result = {
+    sum: 0,
+    values: [],
+  };
+
+  for (let i = 0; i < numberOfDices; i++) {
+    let diceRoll = dice();
+    result.sum += diceRoll;
+    result.values.push(diceRoll);
+  }
+
+  return result;
+};
+console.log("EXERCISE 8",rollTheDices());
 
 // EXERCISE 9
 
 //Write a function called howManyDays which receives a date as a parameter and returns the number of days passed since that date.
 
+const howManyDays = function(selectedDate) {
+  let today = Date.now();
+  let selectedInMilliseconds = Date.parse(selectedDate) //ms
+  return Math.floor((today - selectedInMilliseconds) / (1000 * 60 * 60 * 24))
+};
 
+let date = howManyDays(("6 Jun 1998"))
+
+console.log("EXERCISE 9",date);
 
 // EXERCISE 10
 
 //Write a function called isTodayMyBirthday which should return true if today’s your birthday, false otherwise.
 
+const isTodayMyBirthday = function () {
+  let today = new Date();
+  let myBirthday = new Date(1998, 5, 23);
+  let isTodayMyBirthday = false;
+  if (
+    today.getDay() === myBirthday.getDay() &&
+    today.getMonth() === myBirthday.getMonth()
+  ) {
+    isTodayMyBirthday = true;
+  }
+  return isTodayMyBirthday;
+};
+console.log("EXERCISE 10",isTodayMyBirthday());
 
 // JS Arrays & Objects
 // NOTE: the movies array used in some exercises is defined at the end of this file
@@ -536,7 +559,7 @@ function searchByTitle(movieString){
     }
      return results;
 }
-console.log("EXERCISE 18",searchByTitle(movieString));
+console.log("EXERCISE 18",searchByTitle("Lord"));
 
 // EXERCISE 19
 
@@ -563,7 +586,16 @@ function searchAndDivide(movieString19){
 
 //Write a function called "removeIndex" which receives a number as a parameter and returns the provided movies array without the element in the given position.
 
-
+const removeIndex = function (index) {
+  let result = [];
+  for (let i = 0; i < movies.length; i++) {
+    if (index !== i) {
+      result.push(movies[i]);
+    }
+  }
+  return result;
+};
+console.log(removeIndex());
 
 // [EXTRAS] JS Advanced
 
@@ -575,7 +607,15 @@ function searchAndDivide(movieString19){
 //**
 //***
 
-
+const halfTree = function (height) {
+  for (let i = 0; i < height; i++) {
+    let toPrint = "";
+    for (let j = 0; j < i + 1; j++) {
+      toPrint += "*";
+    }
+    console.log(toPrint);
+  }
+};
 
 // EXERCISE 22
 //Create a function called "tree" which receives a number as a parameter and builds an "*" tree with the given height.
@@ -585,12 +625,28 @@ function searchAndDivide(movieString19){
 //***
 //*****
 
+const tree = function (height) {
+  for (let i = 0; i < height; i++) {
+    let stars = "*".repeat(2 * i + 1);
+    let spacesBefore = " ".repeat(height - i - 1);
+    console.log(spacesBefore + stars);
+  }
+};
 
 // EXERCISE 23
 
 //Create a function called "isItPrime" that receives a number as a parameter and returns true if the given number is a prime number.
 
+const isItPrime = function (number) {
+  for (let i = 2; i < number; i++) {
+    if (number % i === 0) {
+      return false;
+    }
+  }
 
+  return true;
+};
+console.log(isItPrime());
 
 // WHEN YOU ARE FINISHED
 //Commit and push the code to your personal GitHub repository; then post the link of your commit on the Homework section of today’s Eduflow.
